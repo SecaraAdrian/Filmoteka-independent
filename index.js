@@ -1,15 +1,35 @@
 const apiKey = '0749cec710b71a564db8455b86e66c45';
 const baseUrl = 'https://api.themoviedb.org/3';
 
-document.addEventListener('DOMContentLoaded', getPopularMovies);
+document.addEventListener('DOMContentLoaded', () => {
+  getPopularMovies();
+  document.getElementById('search-bar').addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+      const query = event.target.value;
+      if (query.trim() !== '') { 
+        searchMovies(query);
+      }
+    }
+  });
+});
 
 async function getPopularMovies() {
   try {
     const response = await fetch(`${baseUrl}/movie/popular?api_key=${apiKey}`);
     const data = await response.json();
-    displayResults(data.results);
+    displayResults(data.results.slice(0, 50)); 
   } catch (error) {
     console.error('Error fetching popular movies:', error);
+  }
+}
+
+async function searchMovies(query) {
+  try {
+    const response = await fetch(`${baseUrl}/search/movie?api_key=${apiKey}&query=${query}`);
+    const data = await response.json();
+    displayResults(data.results);
+  } catch (error) {
+    console.error('Error searching movies:', error);
   }
 }
 
