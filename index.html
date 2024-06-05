@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Filmoteka</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Filmoteka</h1>
+  <input type="text" id="search-bar" placeholder="Search for a movie...">
+  <div id="results" class="movie-grid"></div>
+
+  <!-- Modal -->
+  <div id="movie-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <img id="modal-poster" src="" alt="Movie Poster" class="modal-poster">
+      <div class="modal-info">
+        <h2 id="modal-title"></h2>
+        <p id="modal-details"></p>
+        <div class="modal-buttons">
+          <button id="watched-button">ADD TO WATCHED</button>
+          <button id="queue-button">ADD TO QUEUE</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="index.js"></script>
+</body>
+</html>
